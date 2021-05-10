@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\EmpleadoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// vista inicial login
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
+Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
+
+// ruta para entrar al index
+Route::group(['middleware' => 'auth'], function(){
+  Route::get('/', [EmpleadoController::class, 'index'])->name('home');
+});
+
+
+require __DIR__.'/auth.php';
