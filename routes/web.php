@@ -16,23 +16,25 @@ use App\Http\Controllers\EmpleadoController;
 */
 
 // vista inicial login
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::resource('empleado', EmpleadoController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
+// Route::get('/', [EmpleadoController::class, 'index'])->name('home');
 
 // ruta para entrar al index
-Route::group(['middleware' => 'auth'], function(){
-  Route::get('/', [EmpleadoController::class, 'index'])->name('home');
-});
+// Route::group(['middleware' => 'auth'], function(){
+//   Route::get('/', [EmpleadoController::class, 'index'])->name('home');
+// });
 
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
